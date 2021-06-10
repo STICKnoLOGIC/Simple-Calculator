@@ -1,0 +1,547 @@
+* {
+    font-family: "Courier New", Monospace;
+    font-size: 1em;
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-callout: none;
+    text-size-adjust: none;
+    user-select: none;
+    tap-highlight-color: rgba(0,0,0,0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+#app {
+    display: flex;
+    height: calc(100vh - calc(100vh - 100%));
+    width: calc(100vw - calc(100vw - 100%));
+    overflow: hidden;
+}
+.close{
+    align-content: center;
+    color: red;
+    cursor: pointer;
+}
+.loader,.error{
+    display: none;
+    flex-direction: column;
+    width:100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.error_msg{
+    width: 70vmin;
+    height: auto;
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+.error_img{
+    width: 30vmin;
+    
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+}
+.pb{
+    align-self: center;
+    margin-bottom: auto;
+    width: 80vmin;
+    height: 5vmin;
+    padding: 4px;
+    background-color: grey;
+    border-radius: 90px;
+}
+.progress{
+    width: 80%;
+    height: 100%;
+    background-color:dodgerblue;
+    border-radius: 90px;
+    animation:  progress1 3s;
+}
+.prog2{
+    width: 100%;
+    animation: progress2 500ms;
+}
+/*<!--about calculator-->*/
+.header {
+    display: flex;
+    position: sticky;
+    align-items: center;
+    background-color: white;
+
+}
+.cntr1
+{
+    display: flex;
+    flex: 1 1 0;
+    width: 100%;
+}
+.cntr2
+{
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    flex: 3 1 0;
+}
+.key
+{
+    font-size: 4.4vmin;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex: 1 1 0;
+    font-weight: bold;
+    color: black;
+}
+p:first-child {
+    text-align: center;
+    align-content: center;
+    flex: 1 1 0;
+}
+
+.input, .input_out
+{
+    text-align: right;
+    border: 0;
+    flex: 0 1 0;
+    width: 100%;
+    color: white;
+    background-color: transparent;
+    padding: 1% 2% 1% 2%;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    font-size: 3.1vmin;
+}
+.input_out {
+    background-color: #0eff0c;
+    height: auto;
+    margin-top: 1%;
+    align-content: center;
+    color: black;
+}
+.hover {
+    position: absolute;
+    height: auto;
+    width: 15%;
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    margin-left: 42.5vw;
+    border-radius: 9px;
+}
+.center-menu {
+    background-color: dodgerblue;
+    border-radius: 160px;
+    box-shadow: 0 0 1px;
+    width: 6vmin;
+    height: 6vmin;
+    margin: 1vmin;
+}
+.desktop-menu {
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+}
+.menu_list {
+    position: absolute;
+    height: auto;
+    display: none;
+    width: auto;
+    z-index: 1;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 8px;
+}
+.show {
+    display: block;
+}
+#selector {
+    text-align: left;
+    align-items: center;
+    padding: 2vmin;
+}
+.input {
+    font-size: 8vmin;
+    flex: 1 1 0;
+    color: black;
+    font-weight: bold;
+}
+.menu_img {
+    width: 50%;
+    height: auto;
+}
+.menu {
+    flex: 1 1 0;
+    margin-left: 5%;
+    width: 5%;
+    height: 5vw;
+}
+h1 {
+    font-size: 6vmin;
+    flex: 9 1 0;
+    color: black;
+    text-align: center;
+    margin: 10px 0 10px 0;
+
+}
+.input:focus {
+    outline: none;
+}
+.input_container {
+
+    align-items: center;
+    padding-top: 10%;
+    flex-direction: column;
+    flex: 1 1 0;
+    width: 100%;
+}
+.equation::-webkit-scrollbar,.input::-webkit-scrollbar, .About_Content::-webkit-scrollbar,.m_history::-webkit-scrollbar{
+  display: none;
+}
+.equation,.input,.About_Content,.m_history {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+.key_cntnr
+{
+    box-shadow: 0 -2px 12px #00000052;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex: 5 1 0;
+}
+
+.number_ {
+    flex-direction: column-reverse;
+    flex: 3 1 0;
+}
+.ops_ {
+    flex: 1 1 0;
+}
+.equal {
+    flex: 2 1 0;
+    background-color: dodgerblue;
+    border-radius: 4px 0 0 0;
+    color: black;
+    font-weight: bold;
+}
+.operation {
+    color: dodgerblue;
+}
+/*equation*/
+.m_history {
+    overflow-y: auto;
+}
+.items {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 4px;
+    margin: 3%;
+}
+.copy {
+    position: relative;
+    left: 75%;
+    top: 8px;
+    font-size: 70%;
+    display: flex;
+    width: 18%;
+    padding: 2px;
+    padding-right: 8px;
+    border-radius: 90px;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: dodgerblue;
+}
+.side-img {
+    width: 20%;
+    height: auto;
+    margin-left: 6%;
+}
+.sel-img {
+    width: 15%;
+    height: auto;
+}
+.answer {
+    padding-right: 5%;
+    font-weight: bold;
+    font-size: 75%;
+    text-align: right;
+    border-radius: 0 0 10px 10px;
+    background-color: #12ff1f;
+}
+.equation {
+    font-size: 120%;
+    width: 100%;
+    overflow-x: auto;
+}
+.clr {
+    color: orange;
+}
+.calculator {
+    background-color: transparent;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    flex-direction: column;
+}
+.history {
+    position: relative;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+}
+
+.row0 {
+    display: flex;
+    flex: 1 1 0 !important;
+}
+
+.row1 {
+    flex: 3 1 0;
+}
+
+.row2 {
+
+    flex: 1 1 0;
+}
+
+.App {
+    width: 100%;
+    height: 100vh;
+    background-color: #eee;
+}
+
+.noScroll {
+    position: absolute;
+    z-index: 3;
+    display: none;
+    justify-content: center;
+    background-color:#000000aa;
+    overflow: none;
+    height: 100vh;
+    width: 100vw;
+}
+
+.header_abt{
+    font-weight: bold;
+    font-size: 150%;
+    display:flex;
+}
+.Abouts {
+    background-color: white;
+    align-self: center;
+    box-shadow: 0 0 8px;
+    border-radius: 20px;
+    height: 50%;
+    width: 75%;
+    padding: 10px;
+}
+.About_Content{
+    height: 80%;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+.see {
+    display: flex;
+}
+/*errors and other events*/
+.error_out
+{
+    background-color: #ff0c0c;
+    color: white;
+}
+.hide {
+    display: none;
+}
+
+.left {
+    display: flex;
+    animation: mobileAnim-in 1s;
+}
+/*Dark Mode*/
+.dark-parent {
+    background-color: #18191a;
+}
+
+.dark-head
+{
+    background-color: #3a3b3c;
+}
+
+.dark-container {
+    background-color: #252526;
+}
+
+.dark-normal {
+    color: white;
+}
+
+.dark-operation {
+    color: deepskyblue;
+}
+
+.dark-equal {
+    color: white;
+}
+
+.dark-clr {
+    color: orange;
+}
+a{
+    text-decoration: none;
+    color: orange;
+}
+.dark-menu {
+    background-color: #656565;
+    color:white;
+    box-shadow: 0 0 8px black;
+}
+
+.dark-input {
+    color: white;
+}
+
+.dark-h {
+    color: white;
+}
+.dark-items
+{
+    background-color: #252526;
+}
+.dark-equations {
+    color: white;
+}
+/*Animations*/
+@keyframes mobileAnim-in {
+    from {
+        top: 100%;
+    }
+    to {
+        top: 0;
+    }
+}
+@keyframes in {
+    from {
+        right: 50%;
+    }
+    to {
+        right: 0;
+    }
+}
+
+@keyframes out {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0;
+    }
+}
+@keyframes progress1{
+    from{width: 0;}
+    to{width:80%;}
+}
+@keyframes progress2{
+    from{width:80%;}
+    to{width: 100%;}
+}
+
+/*other screen display*/
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) and (orientation:landscape) {
+    .error_msg{
+        width: 70vmin;
+        margin-left: 0;
+        margin-top: auto;
+        margin-right: auto;
+        margin-bottom: auto;
+    }
+    .error_img{
+        width: 40vmin;
+        margin-bottom: auto;
+        margin-right: 0;
+        margin-top: auto;
+        margin-left: auto;
+    }
+    
+    .error{
+        flex-direction: row;
+    }
+    
+    .calculator {
+        display: flex;
+        width: 50%;
+        height: 100%;
+    }
+    .Abouts{
+        height: 75%;
+        width: 60%;
+    }
+
+    .history {
+        display: flex;
+        height: initial;
+        width: 50%;
+    }
+
+    .menu {
+        display: none;
+    }
+    .hover {
+        z-index: 2;
+        display: flex;
+    }
+    .key_cntnr {
+        flex-direction: row;
+        flex: 1 1 0;
+    }
+    .row0 {
+        flex-direction: column-reverse;
+        order: 3;
+    }
+    .row1 {
+        order: 2
+    }
+    .row2 {
+        flex-direction: column;
+        order: 1;
+    }
+
+    .right {
+        order: 2;
+        animation: in 1s;
+    }
+    .left {
+        order: 1;
+        z-index: 1;
+        animation: out 1s;
+    }
+    .equal {
+        border-radius: 0 4px 0 0;
+    }
+}
