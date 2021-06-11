@@ -14,16 +14,37 @@
     /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+
 body {
     padding: 0;
     margin: 0;
     height: 100vh;
     width: 100vw;
 }
+/*preloading images needed*/
+body:before {
+  background-image: url(/image/Loader.gif);
+  background-image: url(/image/about-d.png);
+  background-image: url(/image/about-l.png);
+  background-image: url(/image/copy.png);
+  background-image: url(/image/dark.png);
+  background-image: url(/image/error.png);
+  background-image: url(/image/light.png);
+  background-image: url(/image/menu.png);
+  background-image: url(/image/swap-d.png);
+  background-image: url(/image/swap-l.png);
+  background-image: url();
+                    
+  /* partial fallback */
+  
+  visibility: hidden;
+  position: absolute;
+  left: -999em;
+}
 #app {
     display: flex;
     height: calc(100vh - calc(100vh - 100%));
-    width: calc(100vw - calc(100vw - 100%));
+    width: 100vw;
     overflow: hidden;
 }
 .close{
