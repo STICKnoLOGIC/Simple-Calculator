@@ -4,6 +4,8 @@
 
 There is nothing Special, this is just a **"Simple Calculator".**
 
+**Looking for Live Demo?**
+[Visit Here!](https://sticknologic.github.io/Simple-Calculator/Simple%20Calculator/index.html)
 * * *
 
 **<span style="font-size:16px">FEATURES:</span>**
