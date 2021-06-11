@@ -206,12 +206,24 @@ function createCalculator()
     var input=document.createElement('input')
     input.setAttribute('placeholder','0')
     input.setAttribute('class','input')
-    input.setAttribute('inputmode','none')
+    //input.setAttribute('inputmode','none')
+    input.addEventListener('click',function(){
+        input.setAttribute('readonly','readonly')
+        setTimeout(function(){
+            input.removeAttribute('readonly')
+        },5)
+    })
+    input.addEventListener('focus',function(){
+        input.setAttribute('readonly','readonly')
+        setTimeout(function(){
+            input.removeAttribute('readonly')
+        },5)
+    })
     input.addEventListener('keypress',function(e)
     {
-        if(e.key=="Enter")
+        if(e.keyCode==13)
         {
-            var tmp=v.value;
+            var tmp=input.value;
             if(tmp.length>0)
             {
                 if(history.length<=0||history[history.length-1]!==tmp)
@@ -286,27 +298,27 @@ function createCalculator()
         }
         else if(i==1)
         {
-            var main=document.createElement('div');
+            let main=document.createElement('div');
             main.setAttribute('class','cntr2 main');
             cntr1.appendChild(main);
             for(var j=0;j<2;j++)
             {
-                var cntr2=document.createElement('div');
+                const cntr2=document.createElement('div');
                 
                 main.appendChild(cntr2);
-                if(j==0)
+                if(j<=0)
                 {
                     cntr2.setAttribute('class','cntr2 number_');
-                    var numb=1;
+                    let numb=1;
                     for(var k=0;k<3;k++)
                     {
-                        var cnr=document.createElement('div');
+                        const cnr=document.createElement('div');
                         cnr.setAttribute('class','cntr1 n'+k);
                         cntr2.appendChild(cnr);
                         for(var l=0;l<3;l++)
                         {
                             
-                            const key=document.createElement('div');
+                            let key=document.createElement('div');
                             cnr.appendChild(key);
                             key.setAttribute('class','key normal');
                             key.setAttribute('value',numb);
@@ -320,11 +332,11 @@ function createCalculator()
                 }
                 else
                 {
-                 var tmp=["^","-","+"];
+                 const tmp=["^","-","+"];
                  
                     cntr2.setAttribute('class','cntr2 ops_');
                     for (var m = 0; m < 3; m++) {
-                            const key=document.createElement('div');
+                            let key=document.createElement('div');
                             key.setAttribute('class','key operation');
                             key.setAttribute('value',tmp[m]);
                             key.innerHTML='<p class="key_num operation_num">'+tmp[m]+'</p>';
@@ -339,9 +351,9 @@ function createCalculator()
                 
             }
         }
-        else if(i==2)
+        else if(i>=2)
         {
-            var tmp=[".","0","="];
+            const tmp=[".","0","="];
             for (var m = 0; m < 3; m++) {
                 const key = document.createElement('div');
                 key.setAttribute('class', m!=2?'key normal':'key equal');
@@ -363,7 +375,12 @@ function createCalculator()
 
 function onLong(e)
 {
-    timer=setTimeout(function(){e.value=''},longDuration)
+    timer=setTimeout(function(){
+        if(e.value.length>0)
+            e.value=''
+        e.focus()
+        
+        },longDuration)
 }
 function onRelease()
 {
@@ -424,6 +441,7 @@ function createAbout()
         Title.setAttribute('class','noTouch')
         header.setAttribute('class','header_abt noTouch')
         main.setAttribute('class','noTouch About_Content')
+        main.setAttribute('id','main_abouts')
         abt_main.setAttribute('id','main_cntnt')
         abt_cntnr.setAttribute('class','noScroll')
         abt_cntnr.setAttribute('id','sisay')
@@ -543,6 +561,7 @@ function AddMenu()
         {
             //show about
             document.getElementById('sisay').classList.toggle('see')
+            document.getElementById('main_abouts').scrollTop=0
         });
     
     
@@ -613,6 +632,8 @@ function createPopup(parent,id)
         {
             //show about
             document.getElementById('sisay').classList.toggle('see')
+            document.getElementById('main_abouts').scrollTop=0
+            
         });
 }
 
